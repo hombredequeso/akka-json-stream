@@ -31,3 +31,6 @@ project/plugins/project/
 .history
 .cache
 .lib/
+
+# HDQ additions:
+.data

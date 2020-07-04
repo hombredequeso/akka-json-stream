@@ -43,7 +43,7 @@ object Main extends App {
       .map(bs => parse(bs.utf8String).getOrElse(Json.Null))
       .map(clean1)
       .map(json => ByteString(json.toString()))
-      .runWith(FileIO.toPath(Paths.get("factorials.txt")))
+      .runWith(FileIO.toPath(Paths.get(".data/factorials.txt")))
 
   done.onComplete(_ => system.terminate())
 }
