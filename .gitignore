@@ -1,0 +1,33 @@
+# From sbt template:
+
+target/
+
+.settings
+.project
+.classpath
+
+.idea
+*.iml
+
+.metals
+.bloop
+
+# https://github.com/github/gitignore/blob/master/Scala.gitignore
+
+*.class
+*.log
+
+# https://github.com/github/gitignore/blob/320a610b9ffba3ff28166370b6dd9f73096e34b7/Global/SBT.gitignore
+
+# Simple Build Tool
+# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+
+dist/*
+# target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
