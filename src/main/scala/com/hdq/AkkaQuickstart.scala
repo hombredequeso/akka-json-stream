@@ -17,7 +17,6 @@ import akka.util.ByteString
 import scala.concurrent._
 import scala.concurrent.duration._
 import java.nio.file.Paths
-
 import cats.syntax.either._
 import io.circe._, io.circe.parser._
 import io.circe.optics.JsonPath._
