@@ -1,0 +1,14 @@
+{
+  "details": {
+    "name": "john"
+  },
+  "address": "some address",
+  "nonpii": "abcdef"
+}
+{
+  "details": {
+    "name": "jenny"
+  },
+  "address": "my address",
+  "nonpii": "abcdef"
+}
