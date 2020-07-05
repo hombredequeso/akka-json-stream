@@ -70,10 +70,10 @@ object Transforms {
 }
 class AnonS3JsonSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike {
 
-  val sourcebucket = "temp-8cd36850276c"
+  val sourcebucket = "TODO"
   val sourceBucketKey = "akka-quickstart-scala/sample-person.json"
 
-  val destBucket = "temp-8cd36850276c"
+  val destBucket = "TODO"
   val destBucketKey = "akka-quickstart-scala/sample-person-redacted.json"
 
   "Anonymization" must {
