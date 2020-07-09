@@ -61,6 +61,22 @@ class JsonFramingSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike {
       assert(result === 3)
     }
 
+    val appendNextLine = (s: String, n: Json) => s"$s\n${n.noSpaces}"
+
+    "with newlines and commas returns expected result 2" in {
+      val source: Source[ByteString, NotUsed] = Source.single(ByteString(jsonStringInputWithCommas))
+      val frameJson: Flow[ByteString, ByteString, NotUsed] = JsonFraming.objectScanner(1000);
+      val graph: RunnableGraph[Future[String]] = source
+        .via(frameJson)
+        .map((bs) => parse(bs.utf8String).getOrElse(throw new Exception()))
+        .toMat(Sink.fold("")(appendNextLine))(Keep.right)
+      val future: Future[String] = graph.run
+      val result: String = Await.result(future, 3.seconds)
+      Console.println("THE RESULT:")
+      Console.println(result);
+      assert(result.length > 10)
+    }
+
     val jsonStringInputArray =
       """ [{"a":0},
         |{"a":1},

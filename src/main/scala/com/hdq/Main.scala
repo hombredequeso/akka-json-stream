@@ -27,7 +27,7 @@ object Main extends App {
   val sink: Sink[ByteString, Future[MultipartUploadResult]] =
     S3.multipartUpload(destBucket, destBucketKey)
 
-  val frameJson: Flow[ByteString, ByteString, NotUsed] = JsonFraming.objectScanner(1000);
+  val frameJson: Flow[ByteString, ByteString, NotUsed] = JsonFraming.objectScanner(1000)
 
   val redactName = root.details.name.string.modify(_ => "REDACTED")
   val redactAddress = root.address.string.modify(_ => "REDACTED")
@@ -36,7 +36,7 @@ object Main extends App {
   val flow: Flow[ByteString, ByteString, NotUsed] = frameJson
     .map(bs => parse(bs.utf8String).getOrElse(Json.Null))
     .map(anonymize)
-    .map(json => ByteString(json.toString()))
+    .map(json => ByteString(json.noSpaces + "/n"))
 
   val rr: Future[Any] = source.fold(t => Future(), s => s.via(flow).runWith(sink))
 
